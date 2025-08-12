@@ -1,9 +1,13 @@
-pandas
-requests
+# Dependências do dashboard (Streamlit)
+pandas==2.0.3
+requests==2.31.0
 streamlit
 scikit-learn
 matplotlib
 seaborn
 plotly
+
+# Dependências da função de coleta (Vercel)
+psycopg2-binary==2.9.7
 
 
