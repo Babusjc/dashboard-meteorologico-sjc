@@ -1,9 +1,4 @@
 {
-  "functions": {
-    "api/collect-data.py": {
-      "runtime": "python@3.9"
-    }
-  },
   "crons": [
     {
       "path": "/api/collect-data",
