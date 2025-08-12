@@ -1,4 +1,10 @@
 {
+  "functions": {
+    "api/collect-data.py": {
+      "memory": 1024,
+      "maxDuration": 10
+    }
+  },
   "crons": [
     {
       "path": "/api/collect-data",
@@ -6,4 +12,3 @@
     }
   ]
 }
-
