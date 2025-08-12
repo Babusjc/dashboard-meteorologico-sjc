@@ -3,10 +3,12 @@ import numpy as np
 from datetime import datetime, timedelta
 import os
 
-def generate_sample_weather_data(start_date='2020-01-01', end_date='2024-12-31', city='SAO JOSE DOS CAMPOS'):
+def generate_sample_weather_data(start_date_str, end_date_str, city='SAO JOSE DOS CAMPOS'):
     """Generate sample weather data for São José dos Campos-SP"""
     
-    # Create date range
+    start_date = datetime.strptime(start_date_str, '%Y-%m-%d')
+    end_date = datetime.strptime(end_date_str, '%Y-%m-%d')
+    
     date_range = pd.date_range(start=start_date, end=end_date, freq='D')
     
     # Set random seed for reproducibility
@@ -65,19 +67,26 @@ def save_sample_data():
     if not os.path.exists('data'):
         os.makedirs('data')
     
-    # Generate data for each year
-    for year in range(2020, 2025):
+    start_year = 2000
+    current_year = datetime.now().year
+    
+    # Generate data for each year from 2000 to current year
+    for year in range(start_year, current_year + 1):
         start_date = f'{year}-01-01'
-        end_date = f'{year}-12-31' if year < 2024 else '2024-08-11'  # Current date for 2024
+        end_date = f'{year}-12-31'
         
+        # For the current year, generate data only up to the current date
+        if year == current_year:
+            end_date = datetime.now().strftime('%Y-%m-%d')
+            
         df = generate_sample_weather_data(start_date, end_date)
         filename = f'data/inmet_data_sao_jose_dos_campos_{year}.csv'
         df.to_csv(filename, index=False)
         print(f'Generated sample data for {year}: {filename}')
     
-    # Create a combined dataset
+    # Create a combined dataset for all years from 2000 to current year
     all_data = []
-    for year in range(2020, 2025):
+    for year in range(start_year, current_year + 1):
         filename = f'data/inmet_data_sao_jose_dos_campos_{year}.csv'
         if os.path.exists(filename):
             df = pd.read_csv(filename)
