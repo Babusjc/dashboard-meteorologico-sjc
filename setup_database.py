@@ -52,8 +52,8 @@ def setup_database(database_url):
         if count == 0:
             print("Inserindo dados de exemplo...")
             
-            # Gerar dados de exemplo (últimos 2 anos)
-            start_date = datetime(2023, 1, 1)
+            # Gerar dados de exemplo de 2000 até o ano atual
+            start_date = datetime(2000, 1, 1)
             end_date = datetime.now()
             
             records = []
