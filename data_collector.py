@@ -4,6 +4,7 @@ import pandas as pd
 import os
 import zipfile
 import glob
+from datetime import datetime
 
 def download_inmet_data(year, output_dir="data"):
     """Downloads INMET historical data for a given year."""
@@ -11,7 +12,7 @@ def download_inmet_data(year, output_dir="data"):
         os.makedirs(output_dir)
 
     url = f"https://portal.inmet.gov.br/uploads/dadoshistoricos/{year}.zip"
-    file_path = os.path.join(output_dir, f"{year}.zip")
+    file_path = os.path.join(output_dir, f"{year}.zip" )
 
     print(f"Downloading data for year {year} from {url}...")
     response = requests.get(url, stream=True)
@@ -51,8 +52,9 @@ def process_inmet_data(file_path, city_name="SAO JOSE DOS CAMPOS", output_dir="d
     return output_csv_path
 
 if __name__ == "__main__":
-    start_year = 2020  # Example: Adjust as needed
-    end_year = 2024    # Example: Adjust as needed
+    start_year = 2000
+    current_year = datetime.now().year
+    end_year = current_year # Fetch data up to the current year
     
     for year in range(start_year, end_year + 1):
         zip_file = download_inmet_data(year)
@@ -68,6 +70,5 @@ if __name__ == "__main__":
                 process_inmet_data(extracted_csv_path)
             else:
                 print(f"No CSV file found in {extract_dir}.")
-
 
 
