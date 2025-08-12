@@ -1,5 +1,6 @@
 # Dependências do dashboard (Streamlit)
-pandas==2.0.3
+pandas<2.0
+numpy<1.24
 requests==2.31.0
 streamlit
 scikit-learn
@@ -9,5 +10,6 @@ plotly
 
 # Dependências da função de coleta (Vercel)
 psycopg2-binary==2.9.7
+
 
 
