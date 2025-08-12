@@ -1,5 +1,4 @@
-    ```yaml
-    name: Coleta Diária de Dados Meteorológicos
+name: Coleta Diária de Dados Meteorológicos
 
 on:
   schedule:
@@ -27,4 +26,3 @@ jobs:
       run: python api/collect-data.py # Ajuste o caminho se seu arquivo collect-data.py estiver em outro local
       env:
         DATABASE_URL: ${{ secrets.DATABASE_URL }}
-    ```
